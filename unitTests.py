@@ -1,6 +1,7 @@
 import unittest
 from case import Case
 from field import Field
+from minesweeper import MineSweeper
 
 
 class SweeperTests(unittest.TestCase):
@@ -50,4 +51,20 @@ class SweeperTests(unittest.TestCase):
     def test_1st_example_validation(self):
         test_field = Field('*...\n....\n.*..\n....')
         self.assertEquals('*100\n2210\n1*10\n1110', test_field.resolve())
+
+    #MineSweeper Tests
+    def test_final_input_output(self):
+        test_input = """4 4
+*...
+....
+.*..
+....
+3 5
+**...
+.....
+.*...
+0 0"""
+        test_sweeper = MineSweeper(test_input)
+        expected_output = "Field #1:\n*100\n2210\n1*10\n1110\n\nField #2:\n**100\n33200\n1*100"
+        self.assertEquals(expected_output, test_sweeper.resolve())
 
