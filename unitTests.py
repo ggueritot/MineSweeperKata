@@ -38,3 +38,16 @@ class SweeperTests(unittest.TestCase):
     def test_two_cells_with_one_bomb(self):
         test_field = Field(".*")
         self.assertEquals("1*", test_field.resolve())
+
+    def test_two_safe_rows(self):
+        test_field = Field(".\n.")
+        self.assertEquals("0\n0", test_field.resolve())
+
+    def test_two_rows_with_a_mine(self):
+        test_field = Field(".\n*")
+        self.assertEquals("1\n*", test_field.resolve())
+
+    def test_1st_example_validation(self):
+        test_field = Field('*...\n....\n.*..\n....')
+        self.assertEquals('*100\n2210\n1*10\n1110', test_field.resolve())
+
